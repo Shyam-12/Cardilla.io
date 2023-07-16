@@ -1,0 +1,61 @@
+/* Logo */
+.header {
+    width: 100%;
+    height: 100px;
+    padding: 0;
+  }
+  
+.header > img {
+    width: 250px;
+    height: auto;
+    position: absolute;
+    left: 50px;
+}
+
+.connect {
+    margin-bottom: 2rem;
+    position: absolute;
+    top: 50px;
+    right: 70px;
+    font-size: 1.5rem;
+}
+
+/* Navbar items */
+.navbar-items {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.navbar-items li {
+    padding: 0px 20px;
+    font-size: 1.5rem;
+}
+
+/* buttons */
+
+.user-login {
+    display: flex;
+    position: absolute;
+    top: 30px;
+    right: 70px;
+}
+
+.reg-btn {
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    border-style: hidden;
+    font-size: 1rem;
+}
+
+.log-btn {
+    padding: 8px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    border-style: hidden;
+    font-size: 1rem;
+}

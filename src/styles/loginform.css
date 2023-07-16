@@ -1,0 +1,26 @@
+form {
+    display: flex;
+    flex-direction: column;
+}
+form h2 {
+    text-align: center;
+}
+
+
+form input {
+    padding: 10px;
+    margin: 10px;
+}
+
+form button {
+    padding: 10px;
+}
+
+form
+.reg-btn {
+    padding: 10px 20px;
+    /* margin: 5px; */
+    border-radius: 5px;
+    border-style: hidden;
+    font-size: 1rem;
+}
