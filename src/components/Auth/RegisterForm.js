@@ -22,7 +22,9 @@ const RegisterForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <h1>Register</h1>
-      <button className='reg-btn'>Login with Google</button>
+      <button className='reg-btn'>Login with Web3Auth</button>
+      <button className='reg-btn'>Login with Wallet</button>
+      <button className='reg-btn'>Login with Magic.Link</button>
       <input className='input-details' type="text" value={username} onChange={handleUsernameChange} placeholder="Username" />
       <input className='input-details' type="password" value={password} onChange={handlePasswordChange} placeholder="Password" />
       <button className='reg-btn' type="submit">Register</button>
