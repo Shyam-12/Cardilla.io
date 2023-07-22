@@ -22,6 +22,9 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <h2>Login</h2>
+      <button className='reg-btn'>Login with Web3Auth</button>
+      <button className='reg-btn'>Login with Wallet</button>
+      <button className='reg-btn'>Login with Magic.Link</button>
       <input className='reg-btn' type="text" value={username} onChange={handleUsernameChange} placeholder="Username" />
       <input className='reg-btn' type="password" value={password} onChange={handlePasswordChange} placeholder="Password" />
       <button className='reg-btn' type="submit">Login</button>
