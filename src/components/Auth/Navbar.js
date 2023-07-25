@@ -6,6 +6,7 @@ import LoginForm from '../components/Auth/LoginForm';
 import { useState } from 'react';
 
 function Navbar () {
+
     // const [showModal, setShowModal] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
 
@@ -37,17 +38,17 @@ function Navbar () {
                     <div className="reg-btn">
                     <ConnectWallet
                         dropdownPosition={{
-                        side: "bottom",
+                        side: "top",
                         align: "center",
                         }}
                     />
                     </div>
-                    <button className="reg-btn" onClick={handleLoginClick}>Login</button>
+                    {/* <button className="reg-btn" onClick={handleLoginClick}>Login</button>
                     {showLogin && (
                         <Modal onClose={handleCloseModal}>
                             <LoginForm />
                         </Modal>
-                    )}
+                    )} */}
             </div>  
                 {/* <button className="reg-btn" onClick={handleRegisterClick}>Register</button>
                 {showModal && (
