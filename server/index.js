@@ -11,6 +11,10 @@ app.use(cors());
 // Routes
 const paymentRoutes = require('./routes/paymentRoutes');
 const userRoutes = require('./routes/user');
+const creditCardRoutes = require('./routes/creditCardRoutes');
+const pendingBillRouter = require('./routes/pendingBills');
+const billsRoute = require('./routes/bills');
+
 // MongoDB connection
 const MONGODB_URI = process.env.MONGODB_URI; // Retrieve the URI from the environment variable
 mongoose.connect(MONGODB_URI, {
@@ -26,6 +30,9 @@ db.once('open', () => {
 // Routes
 app.use('/api/payments', paymentRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/credit-card', creditCardRoutes);
+app.use('/api/pendingBills', pendingBillRouter);
+app.use('/api/bills', billsRoute);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

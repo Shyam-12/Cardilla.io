@@ -19,6 +19,7 @@ function Navbar () {
             <img src="/images/logo.jpg" alt="thirdweb logo" />
             <div className="details">
                 <ul className="navbar-items">
+                    <li>Home</li>
                     <li>Features</li>
                     <li>About</li>
                     <li>Docs</li>

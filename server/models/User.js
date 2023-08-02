@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const validator = require('validator');
+const { Schema } = mongoose;
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -12,7 +13,11 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-  }
+  },
+  creditCard: {
+    type: Schema.Types.ObjectId,
+    ref: 'CreditCard',
+  },
 });
 
 // static sign up method

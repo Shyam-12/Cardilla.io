@@ -1,18 +1,19 @@
 import "./styles/Home.css";
-import Main from './components/Main';
-import Navbar from "./components/pages/Navbar";
+import Main from './components/pages/Home';
 import Login from "./components/pages/Login";
-import SignUp from "./components/pages/SignUp";
+import Signup from "./components/pages/Signup";
 import { useAuthContext } from './hooks/useAuthContext';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Userscreen from "./components/Userscreen";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import Dashboard from "./components/Dashboard/Dashboard.js";
+
+import './App.css';
 
 export default function Home() {
   const { user } = useAuthContext();
+  
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
         <div className="pages">
           <Routes>
             { !user && (
@@ -22,19 +23,23 @@ export default function Home() {
               />
             )}
 
-            { user && (
+            {/* { user && (
               <Route
-                path="/dashboard"
-                element={<Userscreen />}
+                path="/"
+                element={<user ? Dashboard /> : <Navigate to="/login" />}
               />  
-            )}
+            )} */}
+            <Route 
+              path="/"
+              element={user ? <Dashboard /> : <Navigate to='/' />}
+            />
             <Route 
               path='/signup'
-              element={ <SignUp /> }
+              element={!user ? <Signup /> : <Navigate to="/" />}
             />
             <Route 
               path='/login'
-              element={ <Login /> }
+              element={!user ? <Login /> : <Navigate to="/" />}
             />
           </Routes>
         </div>

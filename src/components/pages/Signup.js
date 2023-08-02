@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import { useSignup } from '../../hooks/useSignup';
 import '../../styles/regForm.css'
 
-const SignUp = () => {
+const Signup = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const {signup, error, isLoading} = useSignup();
 
     const handleSubmit = async (e) => {
-        e.preventDefault() 
+        e.preventDefault(); 
         
-        await signup(email, password)
+        await signup(email, password);
     }
   return (
     <form method='POST' className='signup' onSubmit={handleSubmit}>
@@ -33,4 +33,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default Signup
