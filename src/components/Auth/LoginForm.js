@@ -1,6 +1,8 @@
 // UserLoginForm.js
 import React, { useState } from 'react';
 import '../../styles/loginform.css';
+import {useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
@@ -14,21 +16,34 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle login logic here
+    
+    try {
+      await axios.post('http://localhost:3000/', {
+        username,password
+      })
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      <button className='reg-btn'>Login with Web3Auth</button>
-      <button className='reg-btn'>Login with Wallet</button>
-      <button className='reg-btn'>Login with Magic.Link</button>
-      <input className='reg-btn' type="text" value={username} onChange={handleUsernameChange} placeholder="Username" />
-      <input className='reg-btn' type="password" value={password} onChange={handlePasswordChange} placeholder="Password" />
-      <button className='reg-btn' type="submit">Login</button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        <button className='reg-btn'>Login with Web3Auth</button>
+        <button className='reg-btn'>Login with Wallet</button>
+        <button className='reg-btn'>Login with Magic.Link</button>
+        <input className='reg-btn' type="text" value={username} onChange={handleUsernameChange} placeholder="Username" />
+        <input className='reg-btn' type="password" value={password} onChange={handlePasswordChange} placeholder="Password" />
+        <button className='reg-btn' type="submit">Login</button>
+      </form>
+
+      <br></br>
+
+      <Link to="/signup">Sign Up Page</Link>
+    </div>
   );
 };
 
