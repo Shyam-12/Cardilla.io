@@ -12,7 +12,6 @@ app.use(cors());
 const paymentRoutes = require('./routes/paymentRoutes');
 const userRoutes = require('./routes/user');
 const creditCardRoutes = require('./routes/creditCardRoutes');
-const pendingBillRouter = require('./routes/pendingBills');
 const billsRoute = require('./routes/bills');
 
 // MongoDB connection
@@ -31,7 +30,6 @@ db.once('open', () => {
 app.use('/api/payments', paymentRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/credit-card', creditCardRoutes);
-app.use('/api/pendingBills', pendingBillRouter);
 app.use('/api/bills', billsRoute);
 
 const PORT = process.env.PORT;

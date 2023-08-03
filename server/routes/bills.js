@@ -2,29 +2,22 @@
 
 const express = require('express');
 const router = express.Router();
-const authMiddleware = require('../middleware/requireAuth');
-const Bill = require('../models/Bill');
+// const authMiddleware = require('../middleware/requireAuth');
+const { createBill, getAllBills, getBill, deleteBill, updateBill } = require('../controllers/billController');
+
+// get all bills
+router.get('/', getAllBills);
+
+// get a single bill
+router.get('/:id', getBill);
 
 // Route to create a new bill
-router.post('/create', authMiddleware, async (req, res) => {
-  try {
-    const { amount, dueDate, currency } = req.body;
-    const userId = req.user._id;
+router.post('/', createBill);
 
-    const newBill = new Bill({
-      amount,
-      dueDate,
-      currency,
-      userId,
-      paid: false,
-    });
-    await newBill.save();
+// to delete a bill
+router.delete('/:id', deleteBill);
 
-    res.status(201).json({ message: 'Bill created successfully' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Failed to create bill' });
-  }
-});
+// update a bill
+router.patch('/:id', updateBill);
 
 module.exports = router;

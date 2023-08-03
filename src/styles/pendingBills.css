@@ -1,0 +1,13 @@
+.bill {
+    margin: 30px 0px;
+    padding: 10px;
+    border-style: hidden;
+}
+
+.select-crypto {
+    padding: 10px;
+}
+
+span {
+    cursor: pointer;
+}
