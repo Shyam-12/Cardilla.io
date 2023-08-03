@@ -1,45 +1,49 @@
 // controllers/creditCardController.js
 
-const CreditCard = require('../models/CreditCard');
-const User = require('../models/User');
+const Card = require('../models/CreditCard');
+const mongoose = require('mongoose');
+
+// const User = require('../models/User');
 
 // Controller to create or update credit card details for a user
-exports.createOrUpdateCreditCard = async (req, res) => {
+
+// Route to get single card
+exports.getCard = async (req, res) => {
   try {
-    const { cardNumber, cardHolderName, expirationDate, cvv } = req.body;
+      const { id } = req.params;
 
-    // Check if the user already has a credit card entry in the database
-    let creditCard = await CreditCard.findOne({ user: req.user.id });
+      if (!mongoose.Types.ObjectId.isValid(id)) {
+          return res.status(404).json({ message: 'Bill not found' });
+      }
 
-    if (!creditCard) {
-      // If no credit card entry exists, create a new one
-      creditCard = new CreditCard({
+      const card = await Card.findById(id);
+
+      if (!card) {
+          return res.status(404).json({ message: 'Bill not found' });
+      }
+
+      res.status(200).json(card);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server Error' });
+  }
+};
+
+// Route to create a new bill
+exports.createCard = async (req, res) => {
+  try {
+      const { cardNumber, cardHolderName, expirationDate, cvv } = req.body;
+  
+      const newBill = await Card.create({
         cardNumber,
         cardHolderName,
         expirationDate,
         cvv,
       });
-
-      // Associate the credit card with the user
-      creditCard.user = req.user.id;
-      await creditCard.save();
-
-      // Update the user's creditCard field with the credit card's ObjectId
-      const user = await User.findById(req.user.id);
-      user.creditCard = creditCard._id;
-      await user.save();
-    } else {
-      // If credit card entry exists, update the existing entry
-      creditCard.cardNumber = cardNumber;
-      creditCard.cardHolderName = cardHolderName;
-      creditCard.expirationDate = expirationDate;
-      creditCard.cvv = cvv;
-      await creditCard.save();
+  
+      res.status(201).json(newBill);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Failed to create Card' });
     }
-
-    res.status(200).json({ message: 'Credit card details saved successfully.' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'An error occurred while saving credit card details.' });
-  }
 };

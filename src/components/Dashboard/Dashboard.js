@@ -1,6 +1,9 @@
 import '../../styles/dashboard.css';
 import { useLogout } from '../../hooks/useLogout';
 import React, { useState } from 'react';
+import { ConnectWallet } from "@thirdweb-dev/react";
+import '../../styles/dashboard.css';
+
 import {
   AppBar,
   Toolbar,
@@ -177,10 +180,19 @@ const Dashboard = () => {
             </CardContent>
           </Card>
         );
+      case 'addBill':
+          return (
+            <Card>
+              <CardContent>
+                <Typography variant="h6">Add a Bill</Typography>
+                {/* Display the user's transaction history */}
+                <AddBill />
+              </CardContent>
+            </Card>
+          )
       case 'pendingBills':
         return (
           <div>
-              <AddBill />
               <Card>
                 <CardContent>
                   <Typography variant="h6">Pending Bills</Typography>
@@ -212,6 +224,16 @@ const Dashboard = () => {
           </IconButton>
           <Typography variant="h6" style={{ flexGrow: 1 }}>
             <b>Cardilla</b>
+          </Typography>
+          <Typography style={{ marginLeft: '100px' }}>
+              <ConnectWallet
+                theme="dark"
+                btnTitle="Connect Wallet"
+                dropdownPosition={{
+                  side: "bottom", // "top" | "bottom" | "left" | "right";
+                  align: "end", // "start" | "center" | "end";
+                }}
+              />
           </Typography>
           <IconButton color="inherit" onClick={handleLogout}>
             <ExitToAppIcon />
@@ -252,6 +274,12 @@ const Dashboard = () => {
               <HistoryIcon />
             </ListItemIcon>
             <ListItemText primary="Transaction History" />
+          </ListItem>
+          <ListItem button onClick={() => handleSectionClick('addBill')}>
+            <ListItemIcon>
+              <HistoryIcon />
+            </ListItemIcon>
+            <ListItemText primary="Add a Bill" />
           </ListItem>
           <ListItem button onClick={() => handleSectionClick('pendingBills')}>
             <ListItemIcon>
